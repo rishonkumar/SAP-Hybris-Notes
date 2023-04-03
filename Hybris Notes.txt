@@ -24,12 +24,12 @@ SAP Hybris Solr / Hybris Solr Indexing / Searching
 
 
 
-NOTE IF itemtype = XXX then during the build (ant clean all), there will be model class created = XXXModel.java
+NOTE IF item-type = XXX then during the build (ant clean all), there will be model class created = XXXModel.java
 
 
 
 
-Typecode should be given above 10000+ cox its laready reserved by hybris
+TypeCode should be given above 10000+ coz its already reserved by hybris
 
 
 
@@ -38,7 +38,7 @@ Typecode should be given above 10000+ cox its laready reserved by hybris
 
 
 To move DB to Solr Doc 
-		System => Facet => Facet Search Config => Solr Confir for backoffice => Click Index
+		System => Facet => Facet Search Config => Solr Config for backoffice => Click Index
 
 
 
@@ -51,11 +51,11 @@ Example
 	Cart Order User Product Category
 
 
-To see those tables => *.items.xnl (core-items => Product User,cms2-items => CMS realted tables/types)
+To see those tables => *.items.xnl (core-items => Product User,cms2-items => CMS related tables/types)
 
 
 
-How to create table/type , create cols, create realtions, manage DB => ANS IS DATA MODELLING
+How to create table/type , create cols, create relations, manage DB => ANS IS DATA MODELLING
 
 Model Classes /  Object  	
 
@@ -101,17 +101,17 @@ Model Classes /  Object
 	SO USING MODAL CLASSES WE CAN SET , GET THE DATA
 
 
-	PURPOSE OF MODAL CLASS => WE can perform DB operations (create,get,uopdate,delete) 
+	PURPOSE OF MODAL CLASS => WE can perform DB operations (create,get,update,delete) 
 
 
-	REQUIRMENT => I want to create custome
+	REQUIRMENT => I want to create custom
 
 
 				USING CODE (Model file)
 
 
 				set 1
-					CustomeModel cm = new CustomerModel();
+					CustomModel cm = new CustomerModel();
 								or
 
 					CustomerModel cm = modelService.create(CustomerModel.class); (Recommnded)
@@ -249,6 +249,8 @@ Scenarios
         Whenever we create attibute/col => then we can specify the modifier
         <modifier read = "true" write = "false" search = "true" optional = "true" initial = "true" />
 
+            read = get, write = set, initial = val, optional = mandatory or not , Unique = no duplicate
+
         Select * from order where code = 123
 
     WHERE TO DO DATA MODELLING
@@ -332,9 +334,96 @@ Scenarios
             autocreate true => will be created in DB
                         false => u telling sap commerce that type already exisiting & contiune to update
 
-            generate => for model files
+            generate => for model files (You are saying SAP to create model files)
 
 
+        even in <attribue> tag if you dont mention autocreate, generate then it will take from parent(itemtype)
+
+
+    Unique and PK 
+    Unique = will not allow duplicate and will allow NULL value
+    PK = will not allow duplicate and will not allow NULL value + internally it creates index
+
+    <indexes> = we create for unique columns
+    IMPROVE the performance while retriving the data
+
+    <indexes>
+
+    PK1(c1) PK2(C8) == yes
+    PK1(c1,c4,C9) == Yes. composite PK
+
+
+    Important   
+        if itemtype extends genericItem then use deployment tag
+        if itemtype doesnt extends genericItem then dont use deployment tag
+        deployment typecode must be >10k
+        deployment table  must be defined for all M_M relations
+
+
+DATA MODELLING CODING
+
+    REQ = Create small DB to provided the recorded session in website
+
+        U have the website [youtube.com]
+
+        S1 Lets create all new types
+
+        Where we can do the data modelling = *core ext
+            *core-items.xml
+
+    trainingcore.xml
+    
+    We can do Coding = Top-Bottom, Bottom-Top (Best)
+
+        s1 -> create 2 enums
+
+            <enumtype code = "PostStatus" >
+                <value code = "DRAFT" />
+                <value code = "PUBLISHED" />
+                <value code = "DELETED" />
+            </enumtype>
+            <enumtype code = "CommentStatus" >
+                <value code = "PENDING" />
+                <value code = "APPROVED" />
+                <value code = "BLOCKED" />
+            </enumtype>
+
+        S2 -> CMSSITE [No need to create. It's already given ]
+
+        S3 -> Create blog type/table
+
+                <itemtype code  = "blog" extends = "genericItem" autocreate = "true" generate = "true"
+
+                    <deployment table = "blog" typecode = "11001">
+
+                    <attribute qualifiers= "name" type = java.lang.String">
+                        <modifier initial = "true" read = "true" write ="false" optional="false" unique = "true" />
+                        <persistence type = "Property"
+                    </attribute>
+
+                    <attribute qualifiers= "active" type = "boolean">
+                        <persistence type = "Property"
+                    </attribute>
+
+                </itemtype>
+
+
+                GO to backoffice -> Types and verfiy (blog)
+
+                for post itemtype 
+                    since blog and this is connected
+                    add inside attribute tag type = "blog"
+
+                    <attribute qualifiers="blog" type = "blog" 
+
+                    />
+
+        s4      create the realtions
+
+        ant clean all => *Model.java is created
+
+        start the server 
+                HAC - Update
 
 
 
@@ -486,6 +575,17 @@ select {code}, {name[en]} From {product} where {code} LIKE "300%" AND {name[en]}
 
 
 
+
+
+FACADE PATTERN
+
+http://javainsimpleway.com/facade-pattern/
+
+Facade and service layer are design patterns. They are standard ways of writing code.
+
+Facade layer, as the name suggests, is something beautiful which is trying to hide something ugly behind it. In spring or any other framework which uses this layer, facade serves as an interface, which is hiding some complex implementation.
+
+Service layer on the other hand can be said as that “complex implementation” which facade layer is hiding. It can call  DAO layer which hits DB. It can call third party services. It can be used to provide features like security,
 
 
 
