@@ -418,43 +418,12 @@ DATA MODELLING CODING
 
                     />
 
-        s4      create the realtions
+        s4      create the relations
 
         ant clean all => *Model.java is created
 
         start the server 
                 HAC - Update
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -526,18 +495,6 @@ Important syntax:
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
 Flexible Search 
     SQL like Syntax
     Return list of object(Hybris items)
@@ -588,29 +545,3 @@ Facade layer, as the name suggests, is something beautiful which is trying to hi
 Service layer on the other hand can be said as that “complex implementation” which facade layer is hiding. It can call  DAO layer which hits DB. It can call third party services. It can be used to provide features like security,
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-    
-
-        
-
-
-
-            
