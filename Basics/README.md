@@ -115,7 +115,8 @@ SAP Hybris Extension:
     An extension is an encapsulated piece of the hybris e-Commerce Suite that can contain business logic, type definitions, a web application, or a hybris Management Console (hMC) configuration. That way, you link up in one place all of the functionality that covers a certain field of use.
 
 SAP Hybris AddOn:
-The purpose of an AddOn is to wrap an extension. By wrapping an extension, it provides additional features to an extension without needing to modify the code of the extension. An AddOn extends the Commerce Accelerator without touching its codebase. Technically, an AddOn is an extension but at build time its codebase is copied inside target extensions to become a part of the extension itself.
+
+    The purpose of an AddOn is to wrap an extension. By wrapping an extension, it provides additional features to an extension without needing to modify the code of the extension. An AddOn extends the Commerce Accelerator without touching its codebase. Technically, an AddOn is an extension but at build time its codebase is copied inside target extensions to become a part of the extension itself.
 
 IMPEX
 
