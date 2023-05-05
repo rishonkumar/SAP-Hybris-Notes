@@ -58,6 +58,51 @@ HOW TO restrict the HAC Options
     We can do all this with ImpEx
 
 
+
+
+In backoffice we have so many Options
+        Cart Order User Product Sites
+
+Let's say i am product owner show only product realted Options
+
+Q How to restriction types
+
+    Cart[type] = key option[type permission] search and give permission
+
+Wha to do after 30 days
+    Challenge if u do initialize u will get back but prob is whatever custom data created is DELETED
+
+    sol2
+        We can apply 90 days
+        go to local.properties => licence.sap.sapsystem=DEV
+        go to platform => licence.bat -temp CPS_SQL
+
+    
+Where we can see SAP PK numbers
+
+    backoofice = go to record = adminstration = pk
+
+CORNJOBS = whatever is running on background it will show if(staged/sync)
+
+FLEXIBLE search
+
+    how to insert record
+    how to delete record
+    how to delete record
+        => IMPEX
+
+    
+    How to get/read the data => FLEXIBLE SEARCH Query
+
+-----
+
+In sap 1 ext can depend on 1 or more extension
+
+q) where can we see ext dependencies =  extension.info = requires-extension
+
+    
+
+
 TypeCode should be given above 10000+ coz its already reserved by hybris
 
 

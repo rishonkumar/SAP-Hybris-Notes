@@ -1,0 +1,70 @@
+
+DB[Emp-Table]
+
+    EMPID   EMPNAME == Cols
+
+    101     XYZ     == RECORD
+
+Using impex we can update delete add records
+You can import / export data from sap Commerce
+
+ 
+ I want to insert 100 records   
+    Orcale ==
+        insert into emp(empid,empname) value(101,dd)
+    
+    Using sap 
+        insert_update emp;empid[Unique=true];empname;empsal
+        ;10;rishon;20$
+        ;20;zxc;40$
+
+
+    GENERAL SYNTAX OF THE IMPEX
+
+    Macro($)
+
+    Mode Type; Att1[m1=v1;m2=v2];Att2[m1=v1];att3
+    Records;
+
+    Mode = insert/update/insert_update(if record there it will update or insert)/remove
+
+    Type = Cart/Employee
+
+
+    insert_update courses;code[Unique=true];name;duration;amount;
+    ;101;SAPCommFun;50hrs;500
+
+    How to execute the impex
+
+        HAC/backoffce/code[init/update]
+
+        Backoffice => tools => import
+
+        CODE
+
+        Where can we see this data => apparelstore => import => core/sample
+         These data are executed / imporeted when INIT/UPDATE
+
+         How to check which is exceuted during init and update
+
+         go to initialdatasystemsetup.java file 
+
+                for sample search on google
+                    initialdatasystemsetup.java github 
+
+            u will find createEssentialData() =>   init/update
+                params.add("");
+            u will find createProjectData() =>   init
+        
+
+    LETS create website
+
+
+    go to apparelstore and use tht as sample
+        go to coredata -> common
+
+        for croma we need only in india go to countries.impex and remove rest
+
+        then go to delivery-Modes
+
+        then go essential-data
